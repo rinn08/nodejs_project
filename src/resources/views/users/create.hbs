@@ -1,0 +1,32 @@
+<div class="mt-4">
+    <h2>Đăng ký tài khoản</h2>
+    <form method="post" action="/users/store">
+        <div class="form-group">
+            <label for="name">Tên đăng nhập</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập">
+        </div>
+        <div class="form-group">
+            <label for="name">Mật khẩu</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu">
+        </div>
+        <button type="submit" class="btn btn-primary">Đăng ký</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#register-btn').click(function (e) {
+            e.preventDefault();
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirm-password').val();
+            if (!username || !password || !confirmPassword) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+            } else if (password !== confirmPassword) {
+                alert('Mật khẩu xác nhận không khớp!');
+            } else {
+                // Xử lý đăng ký tại đây
+            }
+        });
+    });
+</script>

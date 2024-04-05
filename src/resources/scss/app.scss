@@ -1,0 +1,79 @@
+@import 'variables';
+
+.card-courses-item {
+    margin-top: 16px;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    margin-right: 4px;
+}
+
+body {
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    font-family: Arial, sans-serif;
+}
+
+.login-form {
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+.login-form input[type="submit"] {
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    border: 0;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+}
+
+body {
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    font-family: Arial, sans-serif;
+}
+form {
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+form input[type="text"], form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+form input[type="submit"] {
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    border: 0;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+}
+form input[type="submit"]:hover {
+    background: linear-gradient(to right, #ff5e62, #ff9966);
+}
