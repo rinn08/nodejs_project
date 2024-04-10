@@ -51,9 +51,11 @@ class UserController {
             }
 
             req.session.userId = user._id;
+
             console.log('-----------------------------------------------------')
             console.log('Session ID for ' + username + ': ' + req.session.id);
             console.log('-----------------------------------------------------')
+
             return res.redirect('/')
         } catch (err) {
             console.log('err: ',err);
@@ -61,6 +63,25 @@ class UserController {
         }
     }
 
+    // [GET] Logout
+    logout(req, res, next) {
+        req.session.destroy(err => {
+            if (err) {
+              return res.send('Có lỗi xảy ra');
+            }
+            res.redirect('/');
+          });
+    }
+
+    forHeader(req,res,next){
+        const { username } = req.body;
+        User.findOne({ username: username })
+            .then(user => {
+                res.render('/partials/header', { user: mongooseToObject(user)})
+            })
+            .catch(next);
+        
+    }
 }
 
 module.exports = new UserController();

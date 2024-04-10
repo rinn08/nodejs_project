@@ -6,9 +6,10 @@ mongoose.plugin(slug);
 
 const Schema = mongoose.Schema;
 const User = new Schema({
-    username: { type: String, require: true, },
+    username: { type: String, require: true, unique: true, },
     password: { type: String, require: true, },
-    email: { type: String, require: true, },
+    name: {type: String, require: true},
+    email: { type: String, require: true, unique: true, },
 }, {
     timestamps: true,
 });

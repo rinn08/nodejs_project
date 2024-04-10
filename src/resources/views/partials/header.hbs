@@ -7,11 +7,19 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto" id="anonymous">
+        <li class="nav-item">
+          <a class="nav-link" href="/users/create">Đăng ký</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/login">Đăng nhập</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto" id="userMenu">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
             <img class="user-avatar" src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png">
-            Dũng Võ
+            {{user.name}}
           </a>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="/courses/create">Tạo khóa học mới </a>
@@ -19,10 +27,23 @@
             <a class="dropdown-item" href="/me/stored/courses">Khóa học của tôi </a>
             <a class="dropdown-item" href="/me/stored/news">Bài đăng của tôi </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Đăng xuất</a>
+            <a class="dropdown-item" href="/users/logout">Đăng xuất</a>
           </div>
         </li>
 
     </div>
   </div>
 </nav>
+<script>
+  window.onload = function () {
+    var userMenu = document.getElementById('userMenu');
+    await if (!localStorage.getItem('userId')) {
+      anonymous.style.display = 'inline';
+      userMenu.style.display = 'none';
+    }
+    else {
+      anonymous.style.display = 'none';
+      userMenu.style.display = 'block';
+    }
+  }
+</script>
