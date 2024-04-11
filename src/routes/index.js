@@ -26,9 +26,6 @@ function route(app) {
     }, searchRouter);
 
     app.use('/courses', (req, res, next) => {
-        if (!req.session.userId) {
-            return res.redirect('/users/login');
-        }
         next();
     }, coursesRouter);
 
@@ -43,9 +40,6 @@ function route(app) {
     app.use('/users', usersRouter);
     
     app.use('/', (req, res, next) => {
-        if (!req.session.userId) {
-            return res.redirect('/users/login');
-        }
         next();
     }, siteRouter);
 
