@@ -33,13 +33,16 @@ class UserController {
 
     // [GET] Login
     login(req, res, next) {
+        if (req.session.userId) {
+            return res.redirect('/');
+        }
         res.render('users/login')
     }
 
     // [POST] Check login
     async getin(req, res, next) {
         const { username, password } = req.body;
-
+    
         try {
             const user = await User.findOne({ username: username });
             if (!user) {
@@ -49,16 +52,13 @@ class UserController {
             if (!isMatch) {
                 return res.status(401).send('Sai mật khẩu');
             }
-
+    
+            // Set userId to session
             req.session.userId = user._id;
-
-            console.log('-----------------------------------------------------')
-            console.log('Session ID for ' + username + ': ' + req.session.id);
-            console.log('-----------------------------------------------------')
-
+            req.session.username = user.name;
             return res.redirect('/')
         } catch (err) {
-            console.log('err: ',err);
+            console.log('err: ', err);
             return res.status(500).send();
         }
     }
@@ -67,21 +67,45 @@ class UserController {
     logout(req, res, next) {
         req.session.destroy(err => {
             if (err) {
-              return res.send('Có lỗi xảy ra');
+                return res.send('Có lỗi xảy ra');
             }
-            res.redirect('/');
-          });
+            res.redirect('/users/login');
+        });
     }
+    
 
-    forHeader(req,res,next){
+    forHeader(req, res, next) {
         const { username } = req.body;
         User.findOne({ username: username })
             .then(user => {
-                res.render('/partials/header', { user: mongooseToObject(user)})
+                res.render('/partials/header', { user: mongooseToObject(user) })
             })
             .catch(next);
-        
+
     }
+    checkExistence = async function (req, res) {
+        try {
+            const { username, email } = req.body;
+
+            // Kiểm tra xem tài khoản đã tồn tại chưa
+            const user = await User.findOne({ username });
+            if (user) {
+                return res.json({ usernameExists: true });
+            }
+
+            // Kiểm tra xem email đã tồn tại chưa
+            const userEmail = await User.findOne({ email });
+            if (userEmail) {
+                return res.json({ emailExists: true });
+            }
+
+            // Nếu cả tài khoản và email đều không tồn tại, trả về false
+            return res.json({ usernameExists: false, emailExists: false });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Có lỗi xảy ra khi kiểm tra tài khoản và email');
+        }
+    };
 }
 
 module.exports = new UserController();

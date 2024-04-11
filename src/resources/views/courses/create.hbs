@@ -1,22 +1,60 @@
 <div class="mt-4">
     <h2>Đăng khóa học</h2>
-    <form method="post" action="/courses/store">
+    <form id="createCourse-form" method="post" action="/courses/store" onsubmit="return validateForm()">
         <div class="form-group">
             <label for="name">Tên khóa học</label>
             <input type="text" class="form-control" id="name" name="name">
+            <div id="name-error" style="display: none; color: red;">Vui lòng nhập tên khoá học</div>
         </div>
         <div class="form-group">
             <label for="description">Mô tả</label>
             <input type="text" class="form-control" id="description" name="description">
+            <div id="description-error" style="display: none; color: red;">Vui lòng nhập mô tả khoá học</div>
         </div>
         <div class="form-group">
             <label for="videoId">Video id</label>
             <input type="text" class="form-control" id="videoId" name="videoId">
+            <div id="videoId-error" style="display: none; color: red;">Vui lòng nhập liên kết video</div>
         </div>
         <div class="form-group">
             <label for="level">Trình độ</label>
             <input type="text" class="form-control" id="level" name="level">
+            <div id="level-error" style="display: none; color: red;">Vui lòng nhập trình độ của khoá học này</div>
         </div>
         <button type="submit" class="btn btn-primary">Đăng khóa học</button>
     </form>
 </div>
+
+<script>
+    function validateForm() {
+        var name = document.forms["createCourse-form"]["name"].value;
+        var description = document.forms["createCourse-form"]["description"].value;
+        var videoId = document.forms["createCourse-form"]["videoId"].value;
+        var level = document.forms["createCourse-form"]["level"].value;
+
+        if (name == "" || description == "" || videoId == "" || level == "") {
+            if (name == "") {
+                $('#name-error').show();
+                if (description) $('#description-error').hide(); else $('#description-error').show();
+                if (videoId) $('#videoId-error').hide(); else $('#videoId-error').show();
+                if (level) $('#level-error').hide(); else $('#level-error').show();
+                return false;
+            } else $('#name-error').hide();
+            if (description == "") {
+                $('#description-error').show();
+                if (videoId) $('#videoId-error').hide(); else $('#videoId-error').show();
+                if (level) $('#level-error').hide(); else $('#level-error').show();
+                return false;
+            } else $('#description-error').hide();
+            if (videoId == "") {
+                $('#videoId-error').show();
+                if (level) $('#level-error').hide(); else $('#level-error').show();
+                return false;
+            } else $('#videoId-error').hide();
+            if (level == "") {
+                $('#level-error').show();
+                return false;
+            } else $('#level-error').hide();
+        } else $('#name-error').hide();
+    } 
+</script>

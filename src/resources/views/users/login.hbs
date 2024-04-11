@@ -1,35 +1,34 @@
-{{!-- <form method="post" action="/users/getin">
-    <h1>Đăng nhập</h1>
-    <input type="text" class="form-control" id="username" placeholder="Tên đăng nhập">
-    <input type="password" class="form-control" id="password" placeholder="Mật khẩu">
-    <input type="submit" id="login-btn" value="Đăng nhập">
-</form> --}}
-
 <div class="mt-4">
     <h2>Đăng nhập</h2>
-    <form method="post" action="/users/getin">
+    <form id="login-form" onsubmit="return validateForm()" method="post" action="/users/getin">
         <div class="form-group">
-            <label for="name">Tên đăng nhập</label>
+            <label for="username">Tên đăng nhập</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập">
+            <div id="username-error" style="display: none; color: red;">Vui lòng nhập tài khoản</div>
         </div>
         <div class="form-group">
-            <label for="name">Mật khẩu</label>
+            <label for="password">Mật khẩu</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu">
+            <div id="password-error" style="display: none; color: red;">Vui lòng nhập mật khẩu</div>
         </div>
-        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        <button type="submit" class="btn btn-primary login-btn">Đăng nhập</button>
     </form>
 </div>
+
 <script>
-    $(document).ready(function () {
-        $('#login-btn').click(function (e) {
-            e.preventDefault();
-            var username = $('#username').val();
-            var password = $('#password').val();
-            if (!username || !password) {
-                alert('Vui lòng điền đầy đủ thông tin!');
-            } else {
-                // Xử lý đăng nhập tại đây
-            }
-        });
-    });
+    function validateForm() {
+        var username = document.forms["login-form"]["username"].value;
+        var password = document.forms["login-form"]["password"].value;
+        if (username == "" || password == "") {
+            if (username == "") {
+                $('#username-error').show();
+                if (password) $('#password-error').hide(); else $('#password-error').show();
+                return false;
+            } else $('#username-error').hide();
+            if (password == "") {
+                $('#password-error').show();
+                return false;
+            } else $('#password-error').hide();
+        } else $('#username-error').hide();
+    } 
 </script>

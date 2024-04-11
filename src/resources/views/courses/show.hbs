@@ -13,6 +13,13 @@
                 allowfullscreen></iframe>
             <p>{{course.description}}</p>
         </div>
+        {{#if isLoggedIn}}
+        <!-- User is logged in, show user menu -->
+        <h1>LOGGED IN</h1>
+        {{else}}
+        <!-- User is not logged in, show login button -->
+        <h1>NOT LOGGED IN</h1>
+        {{/if}}
 
     </div>
 </div>

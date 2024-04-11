@@ -8,6 +8,8 @@ route.post('/store', UserController.store);
 route.post('/getin',UserController.getin);
 route.get('/logout', UserController.logout);
 route.get('/forHeader', UserController.forHeader);
+route.post('/checkExistence', UserController.checkExistence);
+
 
 
 module.exports = route;

@@ -6,33 +6,52 @@ const meRouter = require('./me');
 const usersRouter = require('./users');
 
 function route(app) {
-    app.use('/news', newsRouter);
-    app.use('/search', searchRouter);
-    app.use('/courses', coursesRouter);
-    app.use('/me', meRouter);
+    app.use((req, res, next) => {
+        res.locals.isLoggedIn = !!req.session.userId;
+        next();
+    });
+
+    app.use('/news', (req, res, next) => {
+        if (!req.session.userId) {
+            return res.redirect('/users/login');
+        }
+        next();
+    }, newsRouter);
+
+    app.use('/search', (req, res, next) => {
+        if (!req.session.userId) {
+            return res.redirect('/users/login');
+        }
+        next();
+    }, searchRouter);
+
+    app.use('/courses', (req, res, next) => {
+        if (!req.session.userId) {
+            return res.redirect('/users/login');
+        }
+        next();
+    }, coursesRouter);
+
+    app.use('/me', (req, res, next) => {
+        if (!req.session.userId) {
+            return res.redirect('/users/login');
+        }
+        next();
+    }, meRouter);
+
+    // Không áp dụng kiểm tra đăng nhập cho route '/users' vì nó cần cho việc đăng nhập và đăng ký
     app.use('/users', usersRouter);
     
-    app.use('/', siteRouter);
+    app.use('/', (req, res, next) => {
+        if (!req.session.userId) {
+            return res.redirect('/users/login');
+        }
+        next();
+    }, siteRouter);
+
     app.use((req, res) => {
       res.status(404).render('404');
     });
-
-    // app.get('/detailProduct', (req, res) => {
-    // res.render('detailProduct');
-    // })
-
-    // app.get('/thanh-toan', (req, res) => {
-    // res.render('payment');
-    // })
-
-    // app.get('/introduction', (req, res) => {
-    // res.render('introduction');
-
-    // })
-
-    // app.get('/', (req, res) => {
-    //     res.render('home');
-    // })
 }
 
 module.exports = route;
