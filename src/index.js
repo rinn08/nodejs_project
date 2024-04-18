@@ -4,8 +4,11 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const app = express();
 const port = 3000;
+const saltRounds = 10;
 const methodOverride = require('method-override')
 const session = require('express-session');
+
+
 
 app.use(session({
   secret: 'your secret key',
@@ -15,12 +18,15 @@ app.use(session({
 
 const bodyParser = require('body-parser');
 
-// parse application/x-www-form-urlencoded
+// lấy dữ liệu từ form 
 app.use(bodyParser.urlencoded({ extended: false }));
+
+const user = "dunghdqn@gmail.com"
+const pass = "em cua ngay hom qua 13082002"
+
 
 // parse application/json
 app.use(bodyParser.json());
-
 
 const route = require('./routes');
 const db = require('./config/db');
@@ -60,6 +66,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 route(app); // Page route
+
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);

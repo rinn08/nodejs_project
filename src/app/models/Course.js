@@ -12,6 +12,7 @@ const Course = new Schema({
     videoId: { type: String, require: true, },
     level: { type: String },
     slug: { type: String, slug: "name", unique: true },
+    price: { type: Number, require: true,},
 }, {
     timestamps: true,
 });

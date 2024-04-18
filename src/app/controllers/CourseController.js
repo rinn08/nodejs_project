@@ -9,6 +9,7 @@ class CourseController {
                 res.render('courses/show', { course: mongooseToObject(course) })
             )
             .catch(next);
+
     }
 
     // [GET] /courses/create

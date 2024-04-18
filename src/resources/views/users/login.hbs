@@ -1,5 +1,6 @@
 <div class="mt-4">
     <h2>Đăng nhập</h2>
+    <br><br>
     <form id="login-form" onsubmit="return validateForm()" method="post" action="/users/getin">
         <div class="form-group">
             <label for="username">Tên đăng nhập</label>
@@ -11,10 +12,27 @@
             <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu">
             <div id="password-error" style="display: none; color: red;">Vui lòng nhập mật khẩu</div>
         </div>
+        {{!-- <button id="forgot-password" type="button" class="btn-danger">Quên mật khẩu?</button> --}}
+        <div>
+            <a href="./forgotPassword">Quên mật khẩu?</a>
+        </div>
         <button type="submit" class="btn btn-primary login-btn">Đăng nhập</button>
+        {{!-- <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var forgotPasswordForm = document.forms['forgotPassword-form'];
+                var btnforgotPassword = document.getElementById('forgot-password');
+                btnforgotPassword.onclick = function () {
+                    forgotPasswordForm.action = "./forgotPassword";
+                    forgotPasswordForm.submit();
+                }
+            })
+        </script> --}}
     </form>
-    <br><br><br>
+    <br><br><br><br><br><br><br><br><br><br>
 </div>
+
+{{!-- Submit hidden form --}}
+{{!-- <form id="forgotPassword-form" style="display: none;"></form> --}}
 
 <script>
     function validateForm() {
@@ -31,5 +49,6 @@
                 return false;
             } else $('#password-error').hide();
         } else $('#username-error').hide();
-    } 
+    }
+
 </script>

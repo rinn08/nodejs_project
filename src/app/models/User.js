@@ -10,8 +10,10 @@ const User = new Schema({
     password: { type: String, require: true, },
     name: {type: String, require: true},
     email: { type: String, require: true, unique: true, },
+    cart: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
 }, {
     timestamps: true,
 });
+
 
 module.exports = mongoose.model('User', User);

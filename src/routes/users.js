@@ -9,6 +9,8 @@ route.post('/getin',UserController.getin);
 route.get('/logout', UserController.logout);
 route.get('/forHeader', UserController.forHeader);
 route.post('/checkExistence', UserController.checkExistence);
+route.post('/resetPassword', UserController.resetPassword);
+route.get('/forgotPassword', UserController.forgotPassword);
 
 
 

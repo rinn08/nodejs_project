@@ -1,24 +1,20 @@
-<style>
-  
-</style>
-</head>
-<body>
-
 <div class="container">
   <div class="video-wrapper">
     <h2 class="video-title">{{course.name}}</h2>
-    <iframe src="https://www.youtube.com/embed/{{course.videoId}}?si=uVBZWX4S4ZenhFWF" title="YouTube video player" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/{{course.videoId}}?si=uVBZWX4S4ZenhFWF" title="YouTube video player"
+      allowfullscreen></iframe>
     <p class="video-description">Mô tả khoá học: {{course.description}}</p>
   </div>
   {{#if isLoggedIn}}
-  <div class="progress">
-    <h1>Tiến trình học</h1>
+  <div class="login-prompt">
+    <h3>Tiến trình học</h3>
     <!-- Progress bar and other elements to show progress -->
   </div>
   {{else}}
   <div class="login-prompt">
-    <h1>Đăng nhập để theo dõi tiến trình học của bạn</h1>
+    <h3>Đăng nhập để theo dõi tiến trình học của bạn</h3>
     <!-- Login button or form -->
   </div>
   {{/if}}
 </div>
+

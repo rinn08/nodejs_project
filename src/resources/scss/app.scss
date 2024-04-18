@@ -1,5 +1,10 @@
 @import 'variables';
 
+footer {
+    position:static;
+    bottom: 0;
+    width: 100%;
+  }
 .card-courses-item {
     margin-top: 16px;
 }
@@ -118,27 +123,42 @@ iframe {
     width: 100%;
 }
 
-.login-prompt h1 {
+.login-prompt h3 {
     margin: 0;
 }
+.progress {
+    text-align: center;
+    padding: 20px;
+    background-color: #ff6b6b;
+    color: white;
+    margin-top: 20px;
+    width: 100%;
+}
 
-.site-footer {
-    padding: 45px 0 20px;
+.progress h3 {
+    margin: auto;
+}
+.footer {
+    padding: 20px 100px 20px 100px;
     font-size: 15px;
     line-height: 24px;
+    align-items: center;
     color: #737373;
+    bottom: 0px;
+    position: relative;
 }
 
-.site-footer hr {
+.footer hr {
     border-top-color: #bbb;
-    opacity: 0.5
+    opacity: 0.2;
+    max-width: 100%;
 }
 
-.site-footer hr.small {
+.footer hr.small {
     margin: 20px 0
 }
 
-.site-footer h6 {
+.footer h6 {
     color: #fff;
     font-size: 16px;
     text-transform: uppercase;
@@ -146,11 +166,11 @@ iframe {
     letter-spacing: 2px
 }
 
-.site-footer a {
+.footer a {
     color: #737373;
 }
 
-.site-footer a:hover {
+.footer a:hover {
     color: #3366cc;
     text-decoration: none;
 }
@@ -162,6 +182,10 @@ iframe {
 
 .footer-links li {
     display: block
+}
+
+.footer-links ul{
+    padding-left: 0;
 }
 
 .footer-links a {
@@ -176,9 +200,12 @@ iframe {
 }
 
 .footer-about {
-    margin: 20px 0;
+    padding-left: 0;
+    padding-right: 10%;
 }
-
+.footer-social{
+    padding-left: 0;
+}
 .social-icons {
     padding-left: 0;
     list-style: none
@@ -226,3 +253,91 @@ iframe {
     width: 34px;
     font-size: 14px
 }
+
+
+//side-bar
+/* Sidebar */
+.sidebar {
+    position: fixed; /* Định vị cố định */
+    top: 6.1%; /* Vị trí top */
+    left: 0; /* Vị trí left */
+    width: 200px; /* Chiều rộng sidebar */
+    height: 100vh; /* Chiều cao sidebar */
+    background-color: #f2f2f2; /* Màu nền sidebar */
+    padding: 20px;
+    z-index: 1;
+  }
+  
+  /* Content */
+  .content {
+    margin-left: 200px; /* Khoảng cách từ content đến sidebar */
+  }
+  
+  
+
+  // navbar
+#navbar{
+    z-index: 1000;
+    position: fixed;
+}
+
+
+// card
+.card-text {
+    display: -webkit-box; /* Cho phép sử dụng thuộc tính -webkit-line-clamp */
+    -webkit-line-clamp: 1; /* Chỉ hiển thị tối đa 2 dòng */
+    -webkit-box-orient: vertical; /* Xếp văn bản theo chiều dọc */
+    overflow: hidden; /* Ẩn phần văn bản tràn ra ngoài */
+    text-overflow: ellipsis; /* Hiển thị dấu ... ở cuối khi văn bản bị cắt bớt */
+  }
+  .card-title {
+    display: -webkit-box; /* Cho phép sử dụng thuộc tính -webkit-line-clamp */
+    -webkit-line-clamp: 1; /* Chỉ hiển thị tối đa 1 dòng */
+    -webkit-box-orient: vertical; /* Xếp văn bản theo chiều dọc */
+    overflow: hidden; /* Ẩn phần văn bản tràn ra ngoài */
+    text-overflow: ellipsis; /* Hiển thị dấu ... ở cuối khi văn bản bị cắt bớt */
+  }
+  .card {
+    align-self: stretch;
+    /*Kéodàicardtheochiềudọcđểlấpđầytoànbộchiềucaohàng*/
+    border-radius:20px;
+    border-top: 20px;
+}
+.col-sm-4.col-lg-4:hover .card:first-child {
+    /* Hover styles for the card */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add your desired shadow effect */
+    transition: box-shadow 0.3s ease; /* Smooth transition */
+  }
+  
+  .col-sm-4.col-lg-4 .card:first-child:hover ~ .card-body a {
+    /* Preserve hover styles for links within the card */
+    pointer-events: auto;
+  }
+  
+  .card-courses-item {
+    border: 4px;
+    /*Adjustborderwidthandcolorasdesired*/border-radius: 10px;
+     /* Add rounded corners for a softer look (optional) */  
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.card-img-top {
+    border: 4px;/* Đặt border cho toàn bộ ảnh (tùy chỉnh độ dày và màu) */
+    border-bottom-left-radius: 0; /* Xóa bỏ border góc dưới trái */
+    border-bottom-right-radius: 0; /* Xóa bỏ border góc dưới phải */
+    border-top-left-radius: 10px; /* Thiết lập border góc trên trái với bán kính 10px */
+    border-top-right-radius: 10px; /* Thiết lập border góc trên phải với bán kính 10px */
+  }
+  
+#reset-password{
+    border: #29aafe;
+    border-radius: 5%;
+    -webkit-border-radius: 5%;
+    -moz-border-radius: 5%;
+    -ms-border-radius: 5%;
+    -o-border-radius: 5%;
+}
+  
